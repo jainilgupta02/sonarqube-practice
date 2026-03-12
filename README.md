@@ -1,66 +1,108 @@
 # SonarQube Python Demo Project
 
-This project demonstrates integrating **Python testing, coverage, and SonarQube static code analysis** in a DevOps workflow.
+> Demonstrates integrating **Python testing**, **coverage reporting**, and **SonarQube static analysis** in a DevOps workflow.
+
+---
+
+## Table of Contents
+
+- [Project Structure](#project-structure)
+- [Tools Used](#tools-used)
+- [Setup](#setup)
+- [Running Tests & Coverage](#running-tests--coverage)
+- [SonarQube Analysis](#sonarqube-analysis)
+- [DevOps Workflow](#devops-workflow)
+- [Author](#author)
+
+---
 
 ## Project Structure
 
-
+```
 Sonar-project/
 │
-├── app.py
-├── test_app.py
-├── sonar-project.properties
-├── coverage.xml
+├── app.py                     # Application source code
+├── test_app.py                # Pytest test suite
+├── sonar-project.properties   # SonarScanner configuration
+├── coverage.xml               # Coverage report (generated)
 ├── README.md
 └── .gitignore
+```
 
+---
 
 ## Tools Used
 
-- Python
-- Pytest
-- Coverage.py
-- SonarScanner
-- SonarQube Community Edition
-- Git
+| Tool | Purpose |
+|------|---------|
+| Python | Application language |
+| Pytest | Unit testing framework |
+| Coverage.py | Code coverage measurement |
+| SonarScanner | Sends analysis to SonarQube |
+| SonarQube Community Edition | Static code analysis dashboard |
+| Git | Version control |
+
+---
 
 ## Setup
 
-### 1. Create virtual environment
+### 1. Create a virtual environment
 
 ```bash
 python3 -m venv venv
 source venv/bin/activate
 ```
 
-2. Install dependencies
+### 2. Install dependencies
+
+```bash
 pip install pytest pytest-cov coverage
+```
 
-3. Run tests with coverage
+---
+
+## Running Tests & Coverage
+
+Run tests and generate the XML coverage report:
+
+```bash
 pytest --cov=. --cov-report=xml
+```
 
-This generates:
-coverage.xml
+This produces `coverage.xml`, which SonarQube uses to display coverage metrics.
 
-4. Run SonarQube analysis
+---
+
+## SonarQube Analysis
+
+### Run the scanner
+
+```bash
 sonar-scanner
-SonarQube Dashboard
+```
 
-After successful analysis, open:
+### View the dashboard
 
-http://localhost:9000
+After a successful scan, open SonarQube in your browser:
 
-or (WSL networking)
+| Environment | URL |
+|-------------|-----|
+| Local | http://localhost:9000 |
+| WSL (via Windows host) | http://\<windows-host-ip\>:9000 |
+| Example | http://172.25.112.1:9000 |
 
-http://<windows-host-ip>:9000
+---
 
-Example:
+## DevOps Workflow
 
-http://172.25.112.1:9000
-DevOps Workflow
-Code → Tests (pytest) → Coverage → SonarScanner → SonarQube Dashboard
+```
+Code  →  Tests (pytest)  →  Coverage Report  →  SonarScanner  →  SonarQube Dashboard
+```
 
-This setup simulates a basic CI code quality pipeline.
+This setup simulates a basic CI/CD code quality pipeline — catching bugs and coverage gaps before they reach production.
 
-Author
-Jay Gupta
+---
+
+## Author
+
+**Jay Gupta**
